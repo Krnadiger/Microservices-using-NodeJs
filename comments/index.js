@@ -10,7 +10,7 @@ app.use(cors());
 commentsByID = {};
 
 app.get('/posts/:id/comments', (req, res)=>{
-    res.send(commentsByID[req.params.id] || [])
+    res.send(commentsByID[req.params.id] || []);
 });
 
 app.post('/posts/:id/comments', async (req, res)=>{
@@ -29,6 +29,11 @@ app.post('/posts/:id/comments', async (req, res)=>{
     });
     res.status(201).send(comments);
 });
+
+app.post('/events', (req, res)=>{
+    console.log('Event recieved', req.body.type);
+    res.send({});
+})
 
 app.listen(4001, ()=>{
     console.log('Listiningon 4001');
